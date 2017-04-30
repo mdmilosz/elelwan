@@ -1,5 +1,3 @@
-SHELL=/bin/bash
-
 SCANNER_DESC_FILE=scan.l
 PARSER_DESC_FILE=gram.g
 PARSER_EXEC_FILE=out
