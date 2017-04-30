@@ -16,8 +16,8 @@ scan.l: scan.py $(DICT)
 gram.c: gram.g
 	LLgen gram.g
 
-gram.g: gram.py $(GRAM)
-	./gram.py $(GRAM) > gram.g
+gram.g: gram.py $(GRAM) $(DICT)
+	./tokens.py $(DICT) | ./gram.py - $(GRAM) > gram.g
 
 dict.c: dict.py $(DICT)
 	./dict.py $(DICT) > dict.c

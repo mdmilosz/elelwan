@@ -43,12 +43,13 @@ The header consists of `%token` and `%start` declarations.
 * `%token`, followed by one or more token names, declares them as part of speech names.
 * `%start`, followed by one symbols, declares it as the starting symbol of the grammar.
 
+**Update:** The `%token` declarations are now generated automatically. They shouldn't be included in the grammar file.
+
 The body consists of lines of the form *parent-symbol = child-symbols*, where *child-symbols* is a list of symbols the parent can be decomposed into. Basic LLgen extensions are supported: `[ ] | + * ?`.
 
 An example grammar looks as follows:
 
 ```
-%token Noun Verb
 %start Sentence
 %%
 Sentence = NounPhrase VerbPhrase

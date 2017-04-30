@@ -16,7 +16,7 @@ print('''\
 }
 ''')
 
-tokens = []
+tokens = set()
 start = ""
 
 specials = ['[', ']', '*', '+', '?', '|']
@@ -25,7 +25,7 @@ with fileinput.input() as _in:
     for line in _in:
         terms = line.split()
         if terms[0] == "%token":
-            tokens += terms[1:]
+            tokens.update(terms[1:])
         elif terms[0] == "%start" and len(terms)==2:
             start = terms[1]
         elif terms[0] == "%%" and len(terms)==1:
@@ -61,11 +61,8 @@ _start : {}(0) ;
 
 for t in tokens:
     print('''\
-{0} (int dent) {{
-    INDENT; printf("[{0} ");
-  }} : _{0}
-  {{
-    printf("%s]\\n", dict[LLlval]);
+{0} (int dent) : _{0} {{
+    INDENT; printf("[{0} %s]\\n", dict[LLlval]);
   }} ;
 '''.format(t))
 

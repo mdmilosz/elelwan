@@ -1,4 +1,3 @@
-%token Noun Verb AdjPar Fin
 %start Text
 %%
 Text = Sentence +
