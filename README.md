@@ -1,6 +1,6 @@
 # elelwan
 
-**elelwan** is an idea of a constructed language parseable with a LL(1) parser (hence the name).
+**elelwan** is an idea of a constructed language parseable with an LL(1) parser (hence the name).
 
 It depends on:
 * **LLgen**, which can be found on [SlackBuilds.org](https://slackbuilds.org/repository/13.37/development/LLgen/),
