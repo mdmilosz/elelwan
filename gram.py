@@ -11,7 +11,7 @@ print('''\
   void parse(void);
   
   int LLlval;
-  #include "dict.c"
+  extern const char *dict[];
   #define INDENT do {{ int i; for (i=0; i<dent; i++) printf("  "); }} while (0)
 }
 ''')

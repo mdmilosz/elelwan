@@ -5,7 +5,7 @@ OUT?=out
 all: $(OUT)
 
 $(OUT): lex.yy.c gram.c dict.c
-	gcc -o $(OUT) lex.yy.c Lpars.c gram.c
+	gcc -o $(OUT) lex.yy.c Lpars.c gram.c dict.c
 
 lex.yy.c: scan.l
 	flex -l scan.l
