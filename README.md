@@ -6,9 +6,12 @@ It depends on:
 * **LLgen**, which can be found on [SlackBuilds.org](https://slackbuilds.org/repository/13.37/development/LLgen/),
 * **flex**,
 * **gcc**,
-* **Python 3.5**.
+* **Python 3.5**,
+* **make**.
 
 It builds upon two files: `dict.txt` (the dictionary) and `gram.txt` (the grammar). The result is an executable written to the file `out`.
+
+You can build it by typing `make`, or try a sample input by typing `make test`.
 
 ## dict.txt
 
