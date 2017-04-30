@@ -1,32 +1,35 @@
-SCANNER_DESC_FILE=scan.l
-PARSER_DESC_FILE=gram.g
-PARSER_EXEC_FILE=out
+DICT?=dict.txt
+GRAM?=gram.txt
+OUT?=out
 
-all: $(PARSER_EXEC_FILE)
+all: $(OUT)
 
-$(PARSER_EXEC_FILE): lex.yy.c gram.c dict.c
-	gcc -o $(PARSER_EXEC_FILE) lex.yy.c Lpars.c gram.c
+$(OUT): lex.yy.c gram.c dict.c
+	gcc -o $(OUT) lex.yy.c Lpars.c gram.c
 
-lex.yy.c: $(SCANNER_DESC_FILE)
-	flex -l $(SCANNER_DESC_FILE)
+lex.yy.c: scan.l
+	flex -l scan.l
 
-$(SCANNER_DESC_FILE): scan.py dict.txt
-	./scan.py dict.txt > $(SCANNER_DESC_FILE)
+scan.l: scan.py $(DICT)
+	./scan.py $(DICT) > scan.l
 
-gram.c: $(PARSER_DESC_FILE)
-	LLgen $(PARSER_DESC_FILE)
+gram.c: gram.g
+	LLgen gram.g
 
-$(PARSER_DESC_FILE): gram.py gram.txt
-	./gram.py gram.txt > $(PARSER_DESC_FILE)
+gram.g: gram.py $(GRAM)
+	./gram.py $(GRAM) > gram.g
 
-dict.c: dict.py dict.txt
-	./dict.py dict.txt > dict.c
+dict.c: dict.py $(DICT)
+	./dict.py $(DICT) > dict.c
 
-test: $(PARSER_EXEC_FILE)
-	./$(PARSER_EXEC_FILE) < test.txt
+test: $(OUT)
+	./$(OUT) < test.txt
 
 clean:
 	rm -f lex.yy.c
+	rm -f scan.l
 	rm -f Lpars.c
 	rm -f Lpars.h
 	rm -f gram.c
+	rm -f gram.g
+	rm -f dict.c

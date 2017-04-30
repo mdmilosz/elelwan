@@ -13,6 +13,14 @@ It builds upon two files: `dict.txt` (the dictionary) and `gram.txt` (the gramma
 
 You can build it by typing `make`, or try a sample input by typing `make test`.
 
+The filenames can be overriden by environment variables `DICT`, `GRAM` and `OUT`. For example, the following command will build the executable using alternative dictionary and grammar files:
+
+```
+make DICT=alt-dict.txt GRAM=alt-gram.txt
+```
+
+(Before changing between different environments, you might want to `make clean`.)
+
 ## dict.txt
 
 The dictionary consists of lines of the form: *word part-of-speech translation*, separated by whitespace, f.i.:
