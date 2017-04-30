@@ -2,6 +2,7 @@ DICT?=dict.txt
 GRAM?=gram.txt
 OUT?=out
 
+.PHONY: all
 all: $(OUT)
 
 $(OUT): lex.yy.c gram.c dict.c
@@ -22,9 +23,11 @@ gram.g: gram.py $(GRAM) $(DICT)
 dict.c: dict.py $(DICT)
 	./dict.py $(DICT) > dict.c
 
+.PHONY: test
 test: $(OUT)
 	./$(OUT) < test.txt
 
+.PHONY: clean
 clean:
 	rm -f lex.yy.c
 	rm -f scan.l

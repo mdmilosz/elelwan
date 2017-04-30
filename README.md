@@ -7,7 +7,7 @@ It depends on:
 * **flex**,
 * **gcc**,
 * **Python 3.5**,
-* **make**.
+* **GNU make**.
 
 It builds upon two files: `dict.txt` (the dictionary) and `gram.txt` (the grammar). The result is an executable written to the file `out`.
 
