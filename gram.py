@@ -12,7 +12,7 @@ print('''\
   
   int LLlval;
   #include "dict.c"
-  #define INDENT do {{ int i; for (i=0; i<dent; i++) printf("."); }} while (0)
+  #define INDENT do {{ int i; for (i=0; i<dent; i++) printf("  "); }} while (0)
 }
 ''')
 
@@ -43,22 +43,31 @@ _start : {}(0) ;
         if terms[1] == "=":
             parent = terms[0]
             children = terms[2:]
-            print('{} (int dent) : ['.format(parent))
+            print('''\
+{0} (int dent) {{
+    INDENT; printf("[{0}\\n");
+  }} : [ \
+'''.format(parent))
             for child in children:
                 if child in specials:
                     print('    {}'.format(child))
                 else:
                     print('    {} (dent+1)'.format(child))
-            print('  ] {')
-            print('    INDENT; printf("{}\\n");'.format(parent))
-            print('  } ;')
-            print()
+            print('''\
+  ] {
+    INDENT; printf("]\\n");
+  } ;
+''')
 
 for t in tokens:
-    print('{} (int dent) : {} {{'.format(t, '_'+t))
-    print('    INDENT; printf("{} (%s)\\n", dict[LLlval]);'.format(t))
-    print('  } ;')
-    print()
+    print('''\
+{0} (int dent) {{
+    INDENT; printf("[{0} ");
+  }} : _{0}
+  {{
+    printf("%s]\\n", dict[LLlval]);
+  }} ;
+'''.format(t))
 
 print('''\
 {
