@@ -1,0 +1,6 @@
+.directory
+*.c
+*.h
+scan.l
+gram.g
+out

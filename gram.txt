@@ -1,0 +1,8 @@
+%token Noun Verb AdjPar Fin
+%start Text
+%%
+Text = Sentence +
+Sentence = NounPhrase VerbPhrase ? Fin
+NounPhrase = AdjPar Adjective Noun | Noun Adjective ?
+Adjective = Noun
+VerbPhrase = Verb NounPhrase ?

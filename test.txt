@@ -1,0 +1,5 @@
+ala ma;
+ala ma kota;
+owa-kota ala ma owa-ala kota;
+owa-kota ala;
+ala kota;

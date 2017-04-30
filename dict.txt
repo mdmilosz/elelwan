@@ -1,0 +1,5 @@
+ala     Noun    Alice
+ma      Verb    have
+kota    Noun    cat
+owa-    AdjPar  -
+;       Fin     -
